@@ -4,8 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-# --- CAMBIO AQUÍ: agregamos el parámetro --no-cache ---
-RUN npm run build -- --no-cache
+RUN npm run build
 
 # 2. Etapa de ejecución con Node 20
 FROM node:20-alpine AS runner
