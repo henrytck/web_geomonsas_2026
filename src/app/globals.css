@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-slate-950 text-slate-50 antialiased;
+  }
+}
+
+/* Solo este parche para asegurar que las secciones no se encimen */
+section {
+  scroll-margin-top: 80px;
+}
