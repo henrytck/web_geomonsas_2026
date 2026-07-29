@@ -1,13 +1,13 @@
-# 1. Usamos una imagen de Node ligera
-FROM node:18-alpine AS builder
+# 1. Usamos Node 20 (Alpine) compatible con las versiones recientes de Next.js
+FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
 
-# 2. Etapa de ejecución
-FROM node:18-alpine AS runner
+# 2. Etapa de ejecución con Node 20
+FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV production
 COPY --from=builder /app/public ./public
