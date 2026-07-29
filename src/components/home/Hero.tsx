@@ -4,14 +4,23 @@ import HeroMarquee from '@/src/components/home/HeroMarquee';
 import { motion } from 'framer-motion';
 
 export default function Hero() {
+
+  // Función para desplazamiento suave asistido
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="inicio" className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-slate-950">
       
-      {/* Fondo con imagen mediante CSS estándar (Carga garantizada en Next.js/Docker) */}
+      {/* Fondo de Imagen Usando la imagen local segura de tu carpeta /public */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-40 transition-opacity duration-1000"
+        className="absolute inset-0 z-0 bg-cover bg-center opacity-30"
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072')` 
+          backgroundImage: `url('/services_2.JPG')` 
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950" />
@@ -27,18 +36,18 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <a 
-            href="#proyectos"
-            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all hover:scale-105 shadow-xl shadow-blue-500/20 inline-block text-center"
+          <button 
+            onClick={() => scrollToSection('proyectos')}
+            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all hover:scale-105 shadow-xl shadow-blue-500/20 text-center cursor-pointer"
           >
             Empezar ahora
-          </a>
-          <a 
-            href="#contacto"
-            className="px-8 py-4 bg-transparent border-2 border-slate-700 hover:border-blue-400 text-white font-bold rounded-xl transition-all hover:bg-blue-400/10 inline-block text-center"
+          </button>
+          <button 
+            onClick={() => scrollToSection('contacto')}
+            className="px-8 py-4 bg-transparent border-2 border-slate-700 hover:border-blue-400 text-white font-bold rounded-xl transition-all hover:bg-blue-400/10 text-center cursor-pointer"
           >
             Saber más
-          </a>
+          </button>
         </div>
       </div>
 
@@ -47,7 +56,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 1 }}
-        className="w-full absolute bottom-0"
+        className="w-full absolute bottom-0 z-10"
       >
         <HeroMarquee />
       </motion.div>
